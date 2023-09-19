@@ -20,6 +20,6 @@ public class Entry {
 		GreetingClient greetingClient = context.getBean(GreetingClient.class);
 		var result = greetingClient.getMessage().block();
 		// We need to block for the content here or the JVM might exit before the message is logged
-		logger.info(">> message = {}", result);
+		logger.info("{}", result);
 	}
 }
