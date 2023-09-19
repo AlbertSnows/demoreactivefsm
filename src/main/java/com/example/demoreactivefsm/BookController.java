@@ -17,8 +17,6 @@ import javax.validation.Valid;
 import java.net.URI;
 import java.util.Collections;
 
-
-
 /**
  * REST controller for managing {@link com.example.springreactiveopenapicodegen.dto.BookDTO}.
  */

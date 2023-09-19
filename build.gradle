@@ -26,6 +26,7 @@ sourceSets {
 }
 
 dependencies {
+	implementation files("build/generate-resources/main/src/main/java/com/example/springreactiveopenapicodegen")
 	implementation 'org.springframework.boot:spring-boot-starter-data-r2dbc'
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
 	implementation 'org.jetbrains:annotations:24.0.0'
@@ -38,7 +39,6 @@ dependencies {
 	testImplementation 'io.projectreactor:reactor-test'
 	compileOnly 'org.projectlombok:lombok:1.18.28'
 	annotationProcessor 'org.projectlombok:lombok:1.18.28'
-	implementation 'com.example:springreactiveopenapicodegen:1.0.0'
 }
 
 tasks.named('test') {
@@ -50,6 +50,10 @@ tasks.named('test') {
 //		java.srcDir("$buildDir/generated/src/main/java")
 //	}
 //}
+
+tasks.compileJava {
+	dependsOn ':openApiGenerate'
+}
 
 openApiGenerate {
 	inputSpec.set("$rootDir/src/main/resources/api/api.yaml")
@@ -63,13 +67,13 @@ openApiGenerate {
 	library.set('spring-boot')
 	skipValidateSpec.set(false)
 	globalProperties.set([
+			supportingFiles: "ApiUtil.java",
 			apis: '',
-			models: '',
-	])
-
+			models: ''])
 	configOptions.set([
 			reactive: "true",
 			delegatePattern: "true",
+//			generateSupportingFiles: "false",
 			interfaceOnly: "true",
 			dateLibrary: "java8",
 			sourceFolder: "src/main/java",
