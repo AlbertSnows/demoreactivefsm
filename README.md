@@ -12,3 +12,27 @@ IMPORTANT: To run this, if you use clean, it'll remove the
 that this depends on are generated. To run this project
 you need to do `clean -> openApiGenerate -> build`. 
 .dependsOn may fix this, but not 100% sure. 
+
+## More debug notes
+
+Needed this constructor to get things working. Did not like just
+passing in WebProperties.Resources initially. 
+```java
+public class GlobalExceptionHandler extends AbstractErrorWebExceptionHandler {
+	/*
+      Create a new {@code AbstractErrorWebExceptionHandler}.
+   
+      @param errorAttributes    the error attributes
+   * @param serverCodecConfigurer          the resources configuration properties
+   * @param applicationContext the application context
+   * @since 2.4.0
+   */
+	public GlobalExceptionHandler(ErrorAttributes errorAttributes,
+	                              ApplicationContext applicationContext,
+	                              @NotNull ServerCodecConfigurer serverCodecConfigurer) {
+		super(errorAttributes, new WebProperties.Resources(), applicationContext);
+		super.setMessageWriters(serverCodecConfigurer.getWriters());
+		super.setMessageReaders(serverCodecConfigurer.getReaders());
+	}
+}
+```

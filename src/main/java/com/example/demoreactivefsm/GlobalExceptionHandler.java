@@ -10,6 +10,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.codec.ServerCodecConfigurer;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -17,7 +18,7 @@ import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.server.*;
 import org.springframework.web.server.ResponseStatusException;
 import reactor.core.publisher.Mono;
-
+import org.springframework.boot.autoconfigure.web.WebProperties;
 import java.util.Map;
 
 
@@ -29,14 +30,16 @@ public class GlobalExceptionHandler extends AbstractErrorWebExceptionHandler {
 	 * Create a new {@code AbstractErrorWebExceptionHandler}.
 	 *
 	 * @param errorAttributes    the error attributes
-	 * @param resources          the resources configuration properties
+	 * @param serverCodecConfigurer          the resources configuration properties
 	 * @param applicationContext the application context
 	 * @since 2.4.0
 	 */
 	public GlobalExceptionHandler(ErrorAttributes errorAttributes,
-	                              WebProperties.Resources resources,
-	                              ApplicationContext applicationContext) {
-		super(errorAttributes, resources, applicationContext);
+	                              ApplicationContext applicationContext,
+	                              @NotNull ServerCodecConfigurer serverCodecConfigurer) {
+		super(errorAttributes, new WebProperties.Resources(), applicationContext);
+		super.setMessageWriters(serverCodecConfigurer.getWriters());
+		super.setMessageReaders(serverCodecConfigurer.getReaders());
 	}
 
 	@Override
@@ -52,7 +55,7 @@ public class GlobalExceptionHandler extends AbstractErrorWebExceptionHandler {
 						ErrorAttributeOptions.Include.BINDING_ERRORS);
 		var errorAttributes = getErrorAttributes(serverRequest, errorOptions);
 		errorAttributes.put("informal_message", "This is an intentional response. If you're seeing this, then " +
-						"your request caused some sort of error. The rest of this response should hopefully have enough" +
+						"your request caused some sort of error. The rest of this response should hopefully have enough " +
 						"information to help you discern the cause");
 		return ServerResponse.status(HttpStatus.BAD_REQUEST)
 						.contentType(MediaType.APPLICATION_JSON)
