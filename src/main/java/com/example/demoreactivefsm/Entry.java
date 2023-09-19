@@ -7,10 +7,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.autoconfigure.r2dbc.R2dbcAutoConfiguration;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.Import;
 
 @SpringBootApplication(exclude = {
 				DataSourceAutoConfiguration.class,
 				R2dbcAutoConfiguration.class})
+@Import(ErrorConfig.class)
 public class Entry {
 	private static final Logger logger = LoggerFactory.getLogger(Entry.class);
 	public static void main(String[] args) {
