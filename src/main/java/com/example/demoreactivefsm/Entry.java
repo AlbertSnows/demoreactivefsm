@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Import;
 @SpringBootApplication(exclude = {
 				DataSourceAutoConfiguration.class,
 				R2dbcAutoConfiguration.class})
-@Import(ErrorConfig.class)
+//@Import(ErrorConfig.class)
 public class Entry {
 	private static final Logger logger = LoggerFactory.getLogger(Entry.class);
 	public static void main(String[] args) {
