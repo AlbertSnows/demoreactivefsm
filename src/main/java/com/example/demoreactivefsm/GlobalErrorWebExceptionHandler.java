@@ -1,46 +1,26 @@
 package com.example.demoreactivefsm;
 
-import org.jetbrains.annotations.NotNull;
-import org.springframework.boot.autoconfigure.web.WebProperties;
-import org.springframework.boot.autoconfigure.web.reactive.error.AbstractErrorWebExceptionHandler;
-import org.springframework.boot.web.error.ErrorAttributeOptions;
-import org.springframework.boot.web.reactive.error.ErrorAttributes;
-import org.springframework.context.ApplicationContext;
-import org.springframework.core.annotation.Order;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.codec.ServerCodecConfigurer;
-import org.springframework.stereotype.Component;
-import org.springframework.web.reactive.function.BodyInserters;
-import org.springframework.web.reactive.function.server.*;
+import org.springframework.http.*;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.reactive.result.method.annotation.ResponseEntityExceptionHandler;
+import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
-import java.util.Map;
-
-@Component
-@Order(-2)
-public class GlobalErrorWebExceptionHandler extends AbstractErrorWebExceptionHandler {
-
-	public GlobalErrorWebExceptionHandler(GlobalErrorAttributes globalErrorAttributes,
-	                                      ApplicationContext applicationContext,
-	                                      @NotNull ServerCodecConfigurer serverCodecConfigurer) {
-		super(globalErrorAttributes, new WebProperties.Resources(), applicationContext);
-		super.setMessageWriters(serverCodecConfigurer.getWriters());
-		super.setMessageReaders(serverCodecConfigurer.getReaders());
-	}
+@ControllerAdvice
+class GeneralErrorHandler extends ResponseEntityExceptionHandler {
 
 	@Override
-	protected RouterFunction<ServerResponse> getRoutingFunction(ErrorAttributes errorAttributes) {
-		return RouterFunctions.route(RequestPredicates.all(), this::renderErrorResponse);
-	}
+	protected Mono<ResponseEntity<Object>> handleResponseStatusException(
+					ResponseStatusException ex, HttpHeaders headers, HttpStatusCode status,
+					ServerWebExchange exchange) {
+		// do what you need/like:
+		HttpStatusCode myNewStatus;
+        /*
 
-	private @NotNull Mono<ServerResponse> renderErrorResponse(ServerRequest request) {
-
-		final Map<String, Object> errorPropertiesMap = getErrorAttributes(request, ErrorAttributeOptions.defaults());
-
-		int statusCode = Integer.parseInt(errorPropertiesMap.get(ErrorAttributesKey.CODE.getKey()).toString());
-		return ServerResponse.status(HttpStatus.valueOf(statusCode))
-						.contentType(MediaType.APPLICATION_JSON)
-						.body(BodyInserters.fromValue(errorPropertiesMap));
+        switch (status.value()) { // alternatively: if (status.isXXX()) [else if .. else ..]
+           ...
+        }*/
+		return /*super.*/handleExceptionInternal(ex, null, headers, HttpStatus.INTERNAL_SERVER_ERROR, exchange);
 	}
 }
