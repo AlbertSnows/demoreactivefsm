@@ -3,6 +3,7 @@ plugins {
 	id 'org.springframework.boot' version '3.1.3'
 	id 'io.spring.dependency-management' version '1.1.3'
 	id 'org.openapi.generator' version '5.4.0'
+	id 'io.freefair.lombok' version '8.3'
 }
 
 group = 'com.example'
@@ -14,6 +15,14 @@ java {
 
 repositories {
 	mavenCentral()
+}
+
+sourceSets {
+	main {
+		java {
+			srcDirs += ["build/generate-resources/main/src/main/java/com/example/springreactiveopenapicodegen"]
+		}
+	}
 }
 
 dependencies {
@@ -29,11 +38,18 @@ dependencies {
 	testImplementation 'io.projectreactor:reactor-test'
 	compileOnly 'org.projectlombok:lombok:1.18.28'
 	annotationProcessor 'org.projectlombok:lombok:1.18.28'
+	implementation 'com.example:springreactiveopenapicodegen:1.0.0'
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+//configure<SourceSetContainer> {
+//	named("main") {
+//		java.srcDir("$buildDir/generated/src/main/java")
+//	}
+//}
 
 openApiGenerate {
 	inputSpec.set("$rootDir/src/main/resources/api/api.yaml")
@@ -46,12 +62,16 @@ openApiGenerate {
 	modelNameSuffix.set('DTO')
 	library.set('spring-boot')
 	skipValidateSpec.set(false)
+	globalProperties.set([
+			apis: '',
+			models: '',
+	])
+
 	configOptions.set([
 			reactive: "true",
 			delegatePattern: "true",
 			interfaceOnly: "true",
 			dateLibrary: "java8",
-			java8: "true",
 			sourceFolder: "src/main/java",
 			additionalModelTypeAnnotations:
 					"@lombok.Builder @lombok.NoArgsConstructor @lombok.AllArgsConstructor",
