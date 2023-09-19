@@ -1,7 +1,7 @@
 package com.example.demo;
 
 import com.example.demoreactivefsm.Entry;
-import com.example.demoreactivefsm.Greeting;
+import com.example.demoreactivefsm.data.entities.Greeting;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;

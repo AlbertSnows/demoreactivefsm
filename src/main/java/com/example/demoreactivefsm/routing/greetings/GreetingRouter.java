@@ -1,5 +1,6 @@
-package com.example.demoreactivefsm;
+package com.example.demoreactivefsm.routing.greetings;
 
+import com.example.demoreactivefsm.services.greetings.Core;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,11 +13,11 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
 import static org.springframework.web.reactive.function.server.RequestPredicates.accept;
 
 @Configuration(proxyBeanMethods = false)
-public class ReactiveConfig {
+public class GreetingRouter {
 	@Bean
-	public RouterFunction<ServerResponse> routingConfig(@NotNull GreetingHandler greetingHandler) {
+	public RouterFunction<ServerResponse> routeGreeting(@NotNull Core core) {
 		return RouterFunctions.route(
 						GET("/hello").and(accept(MediaType.APPLICATION_JSON)),
-						greetingHandler::hello);
+						core::hello);
 	}
 }

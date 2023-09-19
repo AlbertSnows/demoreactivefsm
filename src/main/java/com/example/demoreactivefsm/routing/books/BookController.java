@@ -1,4 +1,4 @@
-package com.example.demoreactivefsm;
+package com.example.demoreactivefsm.routing.books;
 
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Schema;

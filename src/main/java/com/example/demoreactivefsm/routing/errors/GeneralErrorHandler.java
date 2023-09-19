@@ -1,4 +1,4 @@
-package com.example.demoreactivefsm;
+package com.example.demoreactivefsm.routing.errors;
 
 import org.jetbrains.annotations.NotNull;
 import org.springframework.boot.autoconfigure.web.WebProperties;
