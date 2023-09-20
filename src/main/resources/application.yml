@@ -6,4 +6,12 @@
 #spring.datasource.h2.driverClassName=org.h2.Driver
 
 #Postgres config
-spring.r2dbc.url
+spring:
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/spring_reactive
+    username: ajsnow
+    password: password
+  flyway:
+    url: jdbc:postgresql://localhost:5432/spring_reactive
+    user: ajsnow
+    password: password

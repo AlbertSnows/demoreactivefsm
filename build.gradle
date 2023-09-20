@@ -4,6 +4,7 @@ plugins {
 	id 'io.spring.dependency-management' version '1.1.3'
 	id 'org.openapi.generator' version '5.4.0'
 	id 'io.freefair.lombok' version '8.3'
+	id "org.flywaydb.flyway" version "9.22.1"
 }
 
 group = 'com.example'
@@ -45,15 +46,32 @@ tasks.named('test') {
 	useJUnitPlatform()
 }
 
-//configure<SourceSetContainer> {
-//	named("main") {
-//		java.srcDir("$buildDir/generated/src/main/java")
-//	}
-//}
-
 tasks.compileJava {
 	dependsOn ':openApiGenerate'
 }
+
+tasks.bootRun {
+	dependsOn ':flywayMigrate'
+}
+
+flywayMigrate {
+	// Database URL, username, and password
+	url = 'r2dbc:postgres://localhost:5432/spring_reactive'
+	user = 'ajsnow'
+	password = 'password'
+
+	// Locations of SQL migration scripts
+	locations = ['classpath:db/migration']
+
+	// Baseline (optional)
+	baselineOnMigrate = true
+
+	// Java-based callbacks (optional)
+	callbacks = [
+			'fully.qualified.callback.ClassName'
+	]
+}
+
 
 openApiGenerate {
 	inputSpec.set("$rootDir/src/main/resources/api/api.yaml")
