@@ -1,6 +1,6 @@
 package com.example.demoreactivefsm.services.greetings;
 
-import com.example.demoreactivefsm.data.entities.Greeting;
+import com.example.demoreactivefsm.data.entities.greeting.Greeting;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.BodyInserters;

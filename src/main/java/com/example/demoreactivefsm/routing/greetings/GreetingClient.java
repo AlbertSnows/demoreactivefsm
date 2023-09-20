@@ -1,8 +1,7 @@
 package com.example.demoreactivefsm.routing.greetings;
 
 
-import com.example.demoreactivefsm.data.entities.Greeting;
-import org.jetbrains.annotations.NotNull;
+import com.example.demoreactivefsm.data.entities.greeting.Greeting;
 import reactor.core.publisher.Mono;
 
 import org.springframework.http.MediaType;
