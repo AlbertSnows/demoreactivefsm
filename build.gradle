@@ -40,6 +40,8 @@ dependencies {
 	testImplementation 'io.projectreactor:reactor-test'
 	compileOnly 'org.projectlombok:lombok:1.18.28'
 	annotationProcessor 'org.projectlombok:lombok:1.18.28'
+	implementation 'org.postgresql:postgresql:42.6.0'
+	implementation "org.flywaydb:flyway-gradle-plugin:9.22.1"
 }
 
 tasks.named('test') {
@@ -56,7 +58,7 @@ tasks.bootRun {
 
 flywayMigrate {
 	// Database URL, username, and password
-	url = 'r2dbc:postgres://localhost:5432/spring_reactive'
+	url = 'r2dbc:postgresql://localhost:5432/spring_reactive'
 	user = 'ajsnow'
 	password = 'password'
 

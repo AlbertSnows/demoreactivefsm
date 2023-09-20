@@ -36,3 +36,9 @@ public class GlobalExceptionHandler extends AbstractErrorWebExceptionHandler {
 	}
 }
 ```
+
+## DB errors
+
+`  No database found to handle r2dbc:postgresql://localhost:5432/spring_reactive`
+
+???
