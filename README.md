@@ -41,4 +41,8 @@ public class GlobalExceptionHandler extends AbstractErrorWebExceptionHandler {
 
 `  No database found to handle r2dbc:postgresql://localhost:5432/spring_reactive`
 
-???
+i don't remember. but when it complained about permission denied that was a matter of changing to postgres instead of ajsnow as the user. 
+
+# no migrations
+
+idk, looking into it
