@@ -58,22 +58,14 @@ tasks.bootRun {
 
 flywayMigrate {
 	// Database URL, username, and password
-	url = 'r2dbc:postgresql://localhost:5432/spring_reactive'
-	user = 'ajsnow'
+	url = 'jdbc:postgresql://localhost:5432/spring_reactive'
+	user = 'postgres'
 	password = 'password'
-
 	// Locations of SQL migration scripts
 	locations = ['classpath:db/migration']
-
 	// Baseline (optional)
 	baselineOnMigrate = true
-
-	// Java-based callbacks (optional)
-	callbacks = [
-			'fully.qualified.callback.ClassName'
-	]
 }
-
 
 openApiGenerate {
 	inputSpec.set("$rootDir/src/main/resources/api/api.yaml")
