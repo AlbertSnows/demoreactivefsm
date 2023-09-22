@@ -8,6 +8,16 @@
 #Postgres config
 spring:
   r2dbc:
+    pool:
+      enabled: true
+      max-size: 20
+      validation-query: SELECT 1
+      initial-size: 5
+      max-idle-time: 30m
+    data:
+      r2dbc:
+        repositories:
+          enabled: true
     url: r2dbc:postgresql://localhost:5432/spring_reactive
     username: postgres
     password: password
