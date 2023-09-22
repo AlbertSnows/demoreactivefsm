@@ -52,3 +52,7 @@ for user 'postgres': FATAL: database "test_db;" does not exist`
 
 It's because I put a comma in the url, I spent way too long trying to figure this out. 
 I can feel the few remaining brain cells I have left withering away as I write this
+
+# Nothing migrated
+
+beats me, so far it's 
