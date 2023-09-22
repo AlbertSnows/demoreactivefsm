@@ -43,6 +43,12 @@ public class GlobalExceptionHandler extends AbstractErrorWebExceptionHandler {
 
 i don't remember. but when it complained about permission denied that was a matter of changing to postgres instead of ajsnow as the user. 
 
-# no migrations
+# does not exist, not found, no valid role, etc
 
-idk, looking into it
+e.g. 
+`Unable to obtain connection from database 
+(jdbc:postgresql://localhost:5432/test_db;)
+for user 'postgres': FATAL: database "test_db;" does not exist`
+
+It's because I put a comma in the url, I spent way too long trying to figure this out. 
+I can feel the few remaining brain cells I have left withering away as I write this
