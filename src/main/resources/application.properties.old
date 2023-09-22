@@ -5,10 +5,14 @@ spring.r2dbc.password=password
 
 # Flyway Configuration
 spring.flyway.url=jdbc:postgresql://localhost:5432/spring_reactive
-spring.flyway.user=ajsnow
+spring.flyway.user=postgres
 spring.flyway.password=password
 migration.baselineOnMigrate=true
 
+#flyway.url=jdbc:postgresql://localhost:5432/test_db
+#flyway.user=postgres
+#flyway.password=password
+#flyway.locations=filesystem:src/main/resources/db/migration
 #spring.flyway.baselineOnMigrate=true
 #spring.flyway.check-location=true
 #spring.flyway.locations=classpath:db/migration

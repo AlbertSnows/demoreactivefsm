@@ -58,16 +58,15 @@ tasks.bootRun {
 
 flywayMigrate {
 	// Database URL, username, and password
-	url = 'jdbc:postgresql://localhost:5432/test_db'
-	user = 'ajsnow'
+	url = 'jdbc:postgresql://localhost:5432/spring_reactive'
+	user = 'postgres'
 	password = 'password'
 	// Locations of SQL migration scripts
-	locations =
-		'E:\\Programming\\java\\springboot\\reactive\\demoreactivefsm\\src\\main\\resources\\db\\migration;'
+	locations = ["filesystem:src/main/resources/db/migration"]
 	// ['classpath:db/migration']
 	// Baseline (optional)
-	baselineOnMigrate = true
-	driver = 'org.postgresql.Driver'
+//	baselineOnMigrate = true
+//	driver = 'org.postgresql.Driver'
 }
 
 openApiGenerate {
