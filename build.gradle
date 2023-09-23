@@ -24,7 +24,17 @@ repositories {
 	mavenCentral()
 }
 
+sourceSets {
+	main {
+		java {
+			srcDirs += ["build/generate-resources/main/src/main/java/com/example/springreactiveopenapicodegen"]
+		}
+	}
+}
+
 dependencies {
+	implementation files("build/generate-resources/main/src/main/java/com/example/springreactiveopenapicodegen")
+
 	implementation 'org.openapitools:jackson-databind-nullable:0.2.4'
 	implementation 'org.springframework.boot:spring-boot-starter-data-r2dbc'
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
@@ -99,13 +109,6 @@ tasks.compileJava {
 }
 
 // suspicious things
-// implementation files("build/generate-resources/main/src/main/java/com/example/springreactiveopenapicodegen")
-//sourceSets {
-//	main {
-//		java {
-//			srcDirs += ["build/generate-resources/main/src/main/java/com/example/springreactiveopenapicodegen"]
-//		}
-//	}
-//}
+
 //	implementation "org.flywaydb:flyway-gradle-plugin:9.22.1"
 // ^^^ this line causes the problem with the class not having the specific implementation
