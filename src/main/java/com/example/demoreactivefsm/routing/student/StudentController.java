@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.time.Duration;
+
 @RestController
 @RequestMapping("/api/v1/students")
 @RequiredArgsConstructor
@@ -19,7 +21,7 @@ public class StudentController {
 
 	@GetMapping
 	Flux<Student> findAll() {
-		return service.findAll();
+		return service.findAll().delayElements(Duration.ofSeconds(1));
 	}
 
 	@GetMapping("/{id}")
