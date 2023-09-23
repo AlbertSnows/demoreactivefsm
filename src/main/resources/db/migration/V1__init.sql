@@ -1,4 +1,4 @@
--- db/migration/V1__Base_version.sql
+-- db/migration/V1__init.sql
 -- Description: Initial database schema
 -- Create a sample table
 --DROP TABLE IF EXISTS users;

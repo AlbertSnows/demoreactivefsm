@@ -1,27 +1,10 @@
-# H2 Database Configuration
-#spring.datasource.h2.username=sa
-#spring.datasource.h2.password=password
-#spring.h2.console.enabled=true
-#spring.datasource.h2.url=jdbc:h2:mem:dcbapp
-#spring.datasource.h2.driverClassName=org.h2.Driver
-
 #Postgres config
 spring:
   r2dbc:
-    pool:
-      enabled: true
-      max-size: 20
-      validation-query: SELECT 1
-      initial-size: 5
-      max-idle-time: 30m
-    data:
-      r2dbc:
-        repositories:
-          enabled: true
-    url: r2dbc:postgresql://localhost:5432/spring_reactive
+    url: r2dbc:postgresql://localhost:5432/spring_reactive_t1
     username: postgres
     password: password
   flyway:
-    url: jdbc:postgresql://localhost:5432/spring_reactive
+    url: jdbc:postgresql://localhost:5432/spring_reactive_t1
     user: postgres
     password: password

@@ -2,7 +2,7 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.1.3'
 	id 'io.spring.dependency-management' version '1.1.3'
-//	id 'org.openapi.generator' version '5.4.0'
+	id 'org.openapi.generator' version '5.4.0'
 	id 'io.freefair.lombok' version '8.3'
 	id "org.flywaydb.flyway" version "9.22.1"
 }
@@ -14,50 +14,41 @@ java {
 	sourceCompatibility = '17'
 }
 
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
 repositories {
 	mavenCentral()
 }
 
-sourceSets {
-	main {
-		java {
-			srcDirs += ["build/generate-resources/main/src/main/java/com/example/springreactiveopenapicodegen"]
-		}
-	}
-}
-
 dependencies {
-	implementation files("build/generate-resources/main/src/main/java/com/example/springreactiveopenapicodegen")
+	implementation 'org.openapitools:jackson-databind-nullable:0.2.4'
 	implementation 'org.springframework.boot:spring-boot-starter-data-r2dbc'
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+	implementation 'org.springframework.data:spring-data-r2dbc'
 	implementation 'org.jetbrains:annotations:24.0.0'
+	implementation 'org.postgresql:postgresql'
 	implementation 'io.swagger.core.v3:swagger-annotations:2.2.6'
-	implementation 'org.openapitools:jackson-databind-nullable:0.2.4'
 	implementation 'javax.validation:validation-api:2.0.1.Final'
 	implementation 'javax.annotation:javax.annotation-api:1.3.2'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+	runtimeOnly 'org.postgresql:postgresql'
+	runtimeOnly 'org.postgresql:r2dbc-postgresql'
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'io.projectreactor:reactor-test'
-	compileOnly 'org.projectlombok:lombok:1.18.28'
-	annotationProcessor 'org.projectlombok:lombok:1.18.28'
-	implementation 'org.postgresql:postgresql:42.6.0'
-	implementation "org.flywaydb:flyway-gradle-plugin:9.22.1"
-	implementation 'org.springframework.data:spring-data-r2dbc:3.1.4'
-	// https://mvnrepository.com/artifact/org.flywaydb/flyway-core
-//	implementation 'org.flywaydb:flyway-core:3.0'
 
+	compileOnly 'org.projectlombok:lombok'
+
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	annotationProcessor 'org.projectlombok:lombok'
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
-}
-
-//tasks.compileJava {
-//	dependsOn ':openApiGenerate'
-//}
-
-tasks.bootRun {
-	dependsOn ':flywayMigrate'
 }
 
 flywayMigrate {
@@ -65,36 +56,56 @@ flywayMigrate {
 	url = 'jdbc:postgresql://localhost:5432/spring_reactive'
 	user = 'postgres'
 	password = 'password'
+	baselineOnMigrate = true
 	// Locations of SQL migration scripts
-	locations = ["filesystem:src/main/resources/db/migration"]
+	//	locations = ["filesystem:src/main/resources/db/migration"]
 	// ['classpath:db/migration']
 	// Baseline (optional)
-	baselineOnMigrate = true
-	driver = 'org.postgresql.Driver'
+	//	driver = 'org.postgresql.Driver'
+}
+tasks.bootRun {
+	dependsOn ':flywayMigrate'
 }
 
-//openApiGenerate {
-//	inputSpec.set("$rootDir/src/main/resources/api/api.yaml")
-//	generatorName.set('spring')
-//	packageName.set("${project.group}.springreactiveopenapicodegen")
-//	apiPackage.set("${project.group}.springreactiveopenapicodegen.api.v1")
-//	modelPackage.set("${project.group}.springreactiveopenapicodegen.dto")
-//	generateApiTests.set(false)
-//	generateModelTests.set(false)
-//	modelNameSuffix.set('DTO')
-//	library.set('spring-boot')
-//	skipValidateSpec.set(false)
-//	globalProperties.set([
-//			supportingFiles: "ApiUtil.java",
-//			apis: '',
-//			models: ''])
-//	configOptions.set([
-//			reactive: "true",
-//			delegatePattern: "true",
-////			generateSupportingFiles: "false",
-//			interfaceOnly: "true",
-//			dateLibrary: "java8",
-//			sourceFolder: "src/main/java",
-//			additionalModelTypeAnnotations:
-//					"@lombok.Builder @lombok.NoArgsConstructor @lombok.AllArgsConstructor",
-//			useTags: "true"])}
+
+openApiGenerate {
+	inputSpec.set("$rootDir/src/main/resources/api/api.yaml")
+	generatorName.set('spring')
+	packageName.set("${project.group}.springreactiveopenapicodegen")
+	apiPackage.set("${project.group}.springreactiveopenapicodegen.api.v1")
+	modelPackage.set("${project.group}.springreactiveopenapicodegen.dto")
+	generateApiTests.set(false)
+	generateModelTests.set(false)
+	modelNameSuffix.set('DTO')
+	library.set('spring-boot')
+	skipValidateSpec.set(false)
+	globalProperties.set([
+			supportingFiles: "ApiUtil.java",
+			apis: '',
+			models: ''])
+	configOptions.set([
+			reactive: "true",
+			delegatePattern: "true",
+//			generateSupportingFiles: "false",
+			interfaceOnly: "true",
+			dateLibrary: "java8",
+			sourceFolder: "src/main/java",
+			additionalModelTypeAnnotations:
+					"@lombok.Builder @lombok.NoArgsConstructor @lombok.AllArgsConstructor",
+			useTags: "true"])}
+
+tasks.compileJava {
+	dependsOn ':openApiGenerate'
+}
+
+// suspicious things
+// implementation files("build/generate-resources/main/src/main/java/com/example/springreactiveopenapicodegen")
+//sourceSets {
+//	main {
+//		java {
+//			srcDirs += ["build/generate-resources/main/src/main/java/com/example/springreactiveopenapicodegen"]
+//		}
+//	}
+//}
+//	implementation "org.flywaydb:flyway-gradle-plugin:9.22.1"
+// ^^^ this line causes the problem with the class not having the specific implementation
