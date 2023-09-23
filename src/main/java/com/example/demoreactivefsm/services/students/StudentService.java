@@ -23,7 +23,6 @@ public class StudentService {
 	public Flux<Student> findAll() {
 		return repository.findAll();
 	}
-
 	public Mono<Student> findById(Integer id) {
 		return repository.findById(id);
 	}
