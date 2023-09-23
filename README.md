@@ -55,4 +55,5 @@ I can feel the few remaining brain cells I have left withering away as I write t
 
 # Nothing migrated
 
-beats me, so far it's 
+There was a problem with intellij opening the project in windows, but the terminal being in wsl2. 
+solution is to move project files to wsl2. 
