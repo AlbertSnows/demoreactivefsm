@@ -1,4 +1,9 @@
 #Postgres config
+#server:
+#  servlet:
+#    context-path: /
+
+#needed
 spring:
   r2dbc:
     url: r2dbc:postgresql://localhost:5432/spring_reactive
@@ -8,11 +13,12 @@ spring:
     url: jdbc:postgresql://localhost:5432/spring_reactive
     user: postgres
     password: password
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
+
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: "*"
 #server:
 #  port: 8080
 #  servlet:
@@ -22,4 +28,8 @@ management:
 #  swagger-ui:
 #    path: /swagger-ui.html
     # Specify the path for Swagger UI
-
+#springdoc:
+#  swagger-ui:
+#    path: /swagger-doc/swagger-ui.html
+#  api-docs:
+#    path: /swagger-doc/v3/api-docs

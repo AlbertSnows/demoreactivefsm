@@ -2,14 +2,14 @@ package com.example.demoreactivefsm.services.students;
 
 import com.example.demoreactivefsm.data.entities.student.Student;
 import com.example.demoreactivefsm.data.repo.StudentRepository;
-import lombok.RequiredArgsConstructor;
+//import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Service
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 public class StudentService {
 	private StudentRepository repository;
 

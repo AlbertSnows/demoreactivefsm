@@ -2,7 +2,8 @@ package com.example.demoreactivefsm.routing.student;
 
 import com.example.demoreactivefsm.data.entities.student.Student;
 import com.example.demoreactivefsm.services.students.StudentService;
-import lombok.RequiredArgsConstructor;
+//import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -11,9 +12,14 @@ import java.time.Duration;
 
 @RestController
 @RequestMapping("/api/v1/students")
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 public class StudentController {
 	private final StudentService service;
+	@Autowired
+	public StudentController(StudentService service) {
+		this.service = service;
+	}
+
 	@PostMapping
 	Mono<Student> save (@RequestBody Student student) {
 		return service.save(student);

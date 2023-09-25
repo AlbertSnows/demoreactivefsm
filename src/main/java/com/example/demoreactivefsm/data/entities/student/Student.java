@@ -1,16 +1,16 @@
 package com.example.demoreactivefsm.data.entities.student;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+//import lombok.AllArgsConstructor;
+//import lombok.Builder;
+//import lombok.Getter;
+//import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
-@Getter
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
+//@Getter
+//@AllArgsConstructor
+//@NoArgsConstructor
+//@Builder
 @Table(name = "students")
 public class Student {
 	@Id

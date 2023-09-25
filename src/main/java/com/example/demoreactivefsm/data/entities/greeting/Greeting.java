@@ -1,9 +1,9 @@
 package com.example.demoreactivefsm.data.entities.greeting;
 
 
-import lombok.Getter;
+//import lombok.Getter;
 
-@Getter
+//@Getter
 public class Greeting {
 
 	private String message;
