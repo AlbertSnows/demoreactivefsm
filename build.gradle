@@ -39,7 +39,7 @@ dependencies {
 	implementation 'io.swagger.core.v3:swagger-core:2.1.7'
 //	implementation 'io.swagger.core.v3:swagger-annotations:2.2.6'
 //	implementation 'io.swagger.core.v3:swagger-models:2.1.7'
-	implementation 'org.springdoc:springdoc-openapi-webflux-core:1.7.0'
+//	implementation 'org.springdoc:springdoc-openapi-webflux-core:1.7.0' // causes problems
 
 	// datasource
 	implementation 'org.springframework.boot:spring-boot-starter-data-r2dbc'
