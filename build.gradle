@@ -138,5 +138,3 @@ dependencies {
 
 // suspicious things
 
-//	implementation "org.flywaydb:flyway-gradle-plugin:9.22.1"
-// ^^^ this line causes the problem with the class not having the specific implementation

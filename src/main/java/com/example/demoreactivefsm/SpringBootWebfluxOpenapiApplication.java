@@ -6,11 +6,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@OpenAPIDefinition(info = @Info(
-        title = "Spring WebFlux CRUD Example",
-        version = "1.0",
-        description = "Spring WebFlux CRUD Example Sample documents"
-))
+//@OpenAPIDefinition(info = @Info(
+//        title = "Spring WebFlux CRUD Example",
+//        version = "1.0",
+//        description = "Spring WebFlux CRUD Example Sample documents"
+//))
 public class SpringBootWebfluxOpenapiApplication {
 
     public static void main(String[] args) {
