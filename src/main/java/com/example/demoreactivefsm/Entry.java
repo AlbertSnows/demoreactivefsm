@@ -34,12 +34,12 @@ public class Entry {
 					StudentService service) {
 		return args -> {
 			for (int i = 0; i < 100; i++) {
-				var student = Student.builder()
-								.firstname("Ali " + i)
-								.lastname("Bouali " + i)
-								.age(i)
-								.build();
-				service.save(student).subscribe();
+//				var student = Student.builder()
+//								.firstname("Ali " + i)
+//								.lastname("Bouali " + i)
+//								.age(i)
+//								.build();
+//				service.save(student).subscribe();
 			}
 		};
 	}
