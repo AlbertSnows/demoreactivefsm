@@ -1,7 +1,5 @@
-package com.example.demoreactivefsm.services.students;
+package com.example.demoreactivefsm.student;
 
-import com.example.demoreactivefsm.data.entities.student.Student;
-import com.example.demoreactivefsm.data.repo.StudentRepository;
 //import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

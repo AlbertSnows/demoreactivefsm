@@ -1,4 +1,4 @@
-package com.example.demoreactivefsm.data.entities.student;
+package com.example.demoreactivefsm.student;
 
 //import lombok.AllArgsConstructor;
 //import lombok.Builder;

@@ -1,7 +1,7 @@
 //package com.example.demoreactivefsm.routing.greetings;
 //
 //
-//import com.example.demoreactivefsm.data.entities.greeting.Greeting;
+//import com.example.demoreactivefsm.greeting.Greeting;
 //import reactor.core.publisher.Mono;
 //
 //import org.springframework.http.MediaType;

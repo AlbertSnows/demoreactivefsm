@@ -1,7 +1,7 @@
-package com.example.demoreactivefsm.routing.student;
+package com.example.demoreactivefsm.student;
 
-import com.example.demoreactivefsm.data.entities.student.Student;
-import com.example.demoreactivefsm.services.students.StudentService;
+import com.example.demoreactivefsm.student.Student;
+import com.example.demoreactivefsm.student.StudentService;
 //import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

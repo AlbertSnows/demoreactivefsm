@@ -1,4 +1,4 @@
-package com.example.demoreactivefsm.data.entities.greeting;
+package com.example.demoreactivefsm.greeting;
 
 
 //import lombok.Getter;
