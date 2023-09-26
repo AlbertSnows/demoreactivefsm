@@ -1,4 +1,4 @@
-package com.example.demoreactivefsm.customer;
+package com.example.demo.webflux.app.openapi.customer;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.server.ServerRequest;

@@ -1,4 +1,4 @@
-package com.example.demoreactivefsm.student;
+package com.example.demo.webflux.app.openapi.student;
 
 //import lombok.AllArgsConstructor;
 //import lombok.Builder;

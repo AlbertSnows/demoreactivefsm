@@ -1,20 +1,32 @@
-package com.example.demoreactivefsm.employee;
+package com.example.demo.webflux.app.openapi.employee;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import io.swagger.v3.oas.annotations.Hidden;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jdk.jfr.Description;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@Tag(name = "my example employee controller")
 public class EmployeeController {
 
 	private final List<Employee> employees = createList();
 
-	@RequestMapping(value = "/employees", method = RequestMethod.GET, produces = "application/json")
+	@GetMapping(
+					value = "/employees",
+					produces = "application/json")
+	@Description("Get list of employees")
+	@Operation(summary = "Example endpoint summary",
+	responses = {
+					@ApiResponse(
+									description = "success",
+									responseCode = "200"),
+					@ApiResponse(description = "Unauth",
+									responseCode = "403")})
 	public List<Employee> firstPage() {
 		return employees;
 	}
@@ -26,6 +38,7 @@ public class EmployeeController {
 		return user;
 	}
 
+	@Hidden
 	private static List<Employee> createList() {
 		List<Employee> tempEmployees = new ArrayList<>();
 		Employee emp1 = new Employee();

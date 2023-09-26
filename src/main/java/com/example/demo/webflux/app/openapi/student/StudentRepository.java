@@ -1,6 +1,5 @@
-package com.example.demoreactivefsm.student;
+package com.example.demo.webflux.app.openapi.student;
 
-import com.example.demoreactivefsm.student.Student;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;

@@ -1,7 +1,7 @@
 package com.example.demo;
 
-import com.example.demoreactivefsm.Entry;
-import com.example.demoreactivefsm.greeting.Greeting;
+import com.example.demo.webflux.app.openapi.Entry;
+import com.example.demo.webflux.app.openapi.greeting.Greeting;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;

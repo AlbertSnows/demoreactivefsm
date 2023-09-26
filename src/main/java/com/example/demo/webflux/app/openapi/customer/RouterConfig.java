@@ -1,6 +1,5 @@
-package com.example.demoreactivefsm.customer;
+package com.example.demo.webflux.app.openapi.customer;
 
-import com.example.demoreactivefsm.customer.CustomerHandler;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;

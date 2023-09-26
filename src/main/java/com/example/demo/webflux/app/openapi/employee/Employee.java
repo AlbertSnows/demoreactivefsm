@@ -1,4 +1,4 @@
-package com.example.demoreactivefsm.employee;
+package com.example.demo.webflux.app.openapi.employee;
 
 public class Employee {
 	private String empId;
@@ -7,6 +7,7 @@ public class Employee {
 	private double salary;
 
 	public Employee() {
+		// TODO document why this constructor is empty
 	}
 
 	public String getName() {
@@ -78,9 +79,7 @@ public class Employee {
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
-		if (Double.doubleToLongBits(salary) != Double.doubleToLongBits(other.salary))
-			return false;
-		return true;
+		return Double.doubleToLongBits(salary) == Double.doubleToLongBits(other.salary);
 	}
 
 }

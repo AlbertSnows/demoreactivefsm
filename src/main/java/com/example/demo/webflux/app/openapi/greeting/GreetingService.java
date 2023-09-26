@@ -1,6 +1,5 @@
-package com.example.demoreactivefsm.greeting;
+package com.example.demo.webflux.app.openapi.greeting;
 
-import com.example.demoreactivefsm.greeting.Greeting;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.BodyInserters;

@@ -1,9 +1,7 @@
-package com.example.demoreactivefsm;
+package com.example.demo.webflux.app.openapi;
 
 //import com.example.demoreactivefsm.routing.greetings.GreetingClient;
-import com.example.demoreactivefsm.student.StudentService;
-import io.swagger.v3.oas.annotations.OpenAPIDefinition;
-import io.swagger.v3.oas.annotations.info.Info;
+import com.example.demo.webflux.app.openapi.student.StudentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -15,7 +13,6 @@ import org.springframework.data.r2dbc.repository.config.EnableR2dbcRepositories;
 
 @SpringBootApplication
 @EnableR2dbcRepositories
-@OpenAPIDefinition(info = @Info(title = "APIs", version = "1.0", description = "Documentation APIs v1.0"))
 public class Entry {
 	private static final Logger logger = LoggerFactory.getLogger(Entry.class);
 	public static void main(String[] args) {

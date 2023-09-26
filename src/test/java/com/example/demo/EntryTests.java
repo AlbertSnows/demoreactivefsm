@@ -1,6 +1,6 @@
 package com.example.demo;
 
-import com.example.demoreactivefsm.Entry;
+import com.example.demo.webflux.app.openapi.Entry;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
